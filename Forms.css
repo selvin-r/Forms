@@ -1,0 +1,134 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    
+}
+
+body {
+    /* background: linear-gradient(135deg, #fffef9, #cfcdc8); */
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    padding: 30px;
+    background-image: url(istockphoto-1401721572-612x612.jpg);
+    /* background-repeat: no-repeat; */
+    
+ 
+}
+
+.header {
+    background: #fff;
+    padding: 30px;
+    border-radius: 12px;
+    width: 100%;
+    max-width: 800px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+.header h1 {
+    font-size: 2rem;
+    color:  #81d4f5;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+fieldset {
+    border: 2px solid  #FF0000;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+legend {
+    font-weight: bold;
+    color:  #81d4f5;
+    padding: 0 10px;
+}
+.form-row,
+.form-row2,
+.form-row3,
+.form-row4 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px 20px;
+}
+label {
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 5px;
+    display: block;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="date"],
+input[type="number"],
+select {
+    width: 100%;
+    padding: 10px;
+    border: 1.5px solid #ccc;
+    border-radius: 6px;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+.button {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 25px;
+}
+
+button {
+    padding: 12px 28px;
+    font-size: 15px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 600;
+}
+
+.reset {
+    background:  #81d4f5;
+    color: white;
+}
+
+.reset:hover {
+    background: #e63939;
+}
+
+.submit {
+    background: #81d4f5;
+    color: white;
+}
+
+.submit:hover {
+    background: #0e9b67;
+}
+.z{
+    color: #FF0000;
+}
+.o{
+    color: 	#009E60;
+}
+.h{
+    color: #0818A8;
+}
+.O{
+    color: yellow;
+}
+.fieldset2{
+  border: 2px solid #009E60;
+
+}
+.fieldset3{
+      border: 2px solid #0818A8;
+}
+.fieldset4{
+    border: 2px solid yellow;
+}

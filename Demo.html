@@ -1,0 +1,1191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Complete Registration Form</title>
+    <style>
+        /* Reset and base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        /* Main container */
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            font-weight: 300;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            opacity: 0.9;
+            font-size: 1.1rem;
+        }
+
+        /* Form container */
+        .form-container {
+            padding: 40px;
+        }
+
+        /* Form sections */
+        .form-section {
+            margin-bottom: 40px;
+            padding: 25px;
+            border: 1px solid #e1e5e9;
+            border-radius: 8px;
+            background: #fafbfc;
+        }
+
+        .section-title {
+            color: #2c3e50;
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #667eea;
+            display: flex;
+            align-items: center;
+        }
+
+        .section-title::before {
+            content: '';
+            width: 4px;
+            height: 20px;
+            background: #667eea;
+            margin-right: 10px;
+            border-radius: 2px;
+        }
+
+        /* Form grid */
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+
+        .form-grid.two-column {
+            grid-template-columns: 1fr 1fr;
+        }
+
+        /* Input groups */
+        .input-group {
+            position: relative;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #2c3e50;
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+
+        .input-group input,
+        .input-group select {
+            width: 100%;
+            padding: 14px 16px;
+            border: 2px solid #e1e5e9;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background: white;
+        }
+
+        .input-group input:focus,
+        .input-group select:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+            transform: translateY(-1px);
+        }
+
+        /* Validation states */
+        .input-group.valid input,
+        .input-group.valid select {
+            border-color: #27ae60;
+            background-color: #f8fff9;
+        }
+
+        .input-group.invalid input,
+        .input-group.invalid select {
+            border-color: #e74c3c;
+            background-color: #fff8f8;
+        }
+
+        /* Error messages */
+        .error-message {
+            color: #e74c3c;
+            font-size: 0.85rem;
+            margin-top: 5px;
+            display: none;
+            animation: slideDown 0.3s ease;
+        }
+
+        .error-message.show {
+            display: block;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Success message */
+        .success-message {
+            background: linear-gradient(135deg, #27ae60, #2ecc71);
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            display: none;
+            animation: fadeIn 0.5s ease;
+            margin-bottom: 20px;
+        }
+
+        .success-message.show {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Submit button */
+        .submit-btn {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .submit-btn:active {
+            transform: translateY(0);
+        }
+
+        .submit-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* Loading spinner */
+        .spinner {
+            display: none;
+            width: 20px;
+            height: 20px;
+            border: 2px solid #ffffff33;
+            border-top: 2px solid #ffffff;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-right: 10px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .form-container {
+                padding: 20px;
+            }
+
+            .form-section {
+                padding: 20px;
+                margin-bottom: 25px;
+            }
+
+            .form-grid.two-column {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title {
+                font-size: 1.2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header {
+                padding: 20px;
+            }
+
+            .header h1 {
+                font-size: 1.8rem;
+            }
+
+            .form-container {
+                padding: 15px;
+            }
+
+            .form-section {
+                padding: 15px;
+            }
+        }
+
+        /* Progressive validation indicator */
+        .progress-indicator {
+            height: 4px;
+            background: #e1e5e9;
+            border-radius: 2px;
+            overflow: hidden;
+            margin: 20px 0;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            width: 0%;
+            transition: width 0.5s ease;
+        }
+
+        /* Field icons */
+        .input-group::after {
+            content: '';
+            position: absolute;
+            right: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 20px;
+            height: 20px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .input-group.valid::after {
+            content: '✓';
+            color: #27ae60;
+            font-weight: bold;
+            opacity: 1;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .input-group.invalid::after {
+            content: '✗';
+            color: #e74c3c;
+            font-weight: bold;
+            opacity: 1;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header Section -->
+        <div class="header">
+            <h1>Registration Form</h1>
+            <p>Please fill in all the required information below</p>
+        </div>
+
+        <!-- Progress Indicator -->
+        <div class="progress-indicator">
+            <div class="progress-bar" id="progressBar"></div>
+        </div>
+
+        <div class="form-container">
+            <!-- Success Message -->
+            <div class="success-message" id="successMessage">
+                <h3>🎉 Registration Successful!</h3>
+                <p>All fields have been validated successfully. Your registration is complete.</p>
+            </div>
+
+            <form id="registrationForm" novalidate>
+                <!-- Personal Information Section -->
+                <div class="form-section">
+                    <h2 class="section-title">Personal Information</h2>
+                    <div class="form-grid two-column">
+                        <div class="input-group" id="fullNameGroup">
+                            <label for="fullName">Full Name *</label>
+                            <input type="text" id="fullName" name="fullName" required>
+                            <div class="error-message" id="fullNameError"></div>
+                        </div>
+                        <div class="input-group" id="dobGroup">
+                            <label for="dob">Date of Birth *</label>
+                            <input type="date" id="dob" name="dob" required>
+                            <div class="error-message" id="dobError"></div>
+                        </div>
+                        <div class="input-group" id="emailGroup">
+                            <label for="email">Email Address *</label>
+                            <input type="email" id="email" name="email" required>
+                            <div class="error-message" id="emailError"></div>
+                        </div>
+                        <div class="input-group" id="phoneGroup">
+                            <label for="phone">Phone Number *</label>
+                            <input type="tel" id="phone" name="phone" required placeholder="10-digit number">
+                            <div class="error-message" id="phoneError"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Address Information Section -->
+                <div class="form-section">
+                    <h2 class="section-title">Address Information</h2>
+                    <div class="form-grid">
+                        <div class="input-group" id="streetGroup">
+                            <label for="street">Street Address *</label>
+                            <input type="text" id="street" name="street" required>
+                            <div class="error-message" id="streetError"></div>
+                        </div>
+                        <div class="form-grid two-column">
+                            <div class="input-group" id="cityGroup">
+                                <label for="city">City *</label>
+                                <input type="text" id="city" name="city" required>
+                                <div class="error-message" id="cityError"></div>
+                            </div>
+                            <div class="input-group" id="stateGroup">
+                                <label for="state">State *</label>
+                                <input type="text" id="state" name="state" required>
+                                <div class="error-message" id="stateError"></div>
+                            </div>
+                            <div class="input-group" id="pinCodeGroup">
+                                <label for="pinCode">Pin Code *</label>
+                                <input type="text" id="pinCode" name="pinCode" required placeholder="6-digit code">
+                                <div class="error-message" id="pinCodeError"></div>
+                            </div>
+                            <div class="input-group" id="countryGroup">
+                                <label for="country">Country *</label>
+                                <select id="country" name="country" required>
+                                    <option value="">Select Country</option>
+                                    <option value="India">India</option>
+                                    <option value="USA">United States</option>
+                                    <option value="Canada">Canada</option>
+                                    <option value="UK">United Kingdom</option>
+                                    <option value="Australia">Australia</option>
+                                </select>
+                                <div class="error-message" id="countryError"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Education Information Section -->
+                <div class="form-section">
+                    <h2 class="section-title">Education Information</h2>
+                    <div class="form-grid two-column">
+                        <div class="input-group" id="qualificationGroup">
+                            <label for="qualification">Qualification *</label>
+                            <select id="qualification" name="qualification" required>
+                                <option value="">Select Qualification</option>
+                                <option value="High School">High School</option>
+                                <option value="Bachelor's">Bachelor's Degree</option>
+                                <option value="Master's">Master's Degree</option>
+                                <option value="PhD">PhD</option>
+                                <option value="Diploma">Diploma</option>
+                            </select>
+                            <div class="error-message" id="qualificationError"></div>
+                        </div>
+                        <div class="input-group" id="courseGroup">
+                            <label for="course">Course/Field of Study *</label>
+                            <input type="text" id="course" name="course" required>
+                            <div class="error-message" id="courseError"></div>
+                        </div>
+                        <div class="input-group" id="universityGroup">
+                            <label for="university">University/Institution *</label>
+                            <input type="text" id="university" name="university" required>
+                            <div class="error-message" id="universityError"></div>
+                        </div>
+                        <div class="input-group" id="locationGroup">
+                            <label for="location">Location *</label>
+                            <input type="text" id="location" name="location" required>
+                            <div class="error-message" id="locationError"></div>
+                        </div>
+                        <div class="input-group" id="graduationYearGroup">
+                            <label for="graduationYear">Year of Graduation *</label>
+                            <input type="number" id="graduationYear" name="graduationYear" required placeholder="YYYY" min="1950" max="2030">
+                            <div class="error-message" id="graduationYearError"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Banking Information Section -->
+                <div class="form-section">
+                    <h2 class="section-title">Banking Information</h2>
+                    <div class="form-grid two-column">
+                        <div class="input-group" id="accountNameGroup">
+                            <label for="accountName">Account Holder Name *</label>
+                            <input type="text" id="accountName" name="accountName" required>
+                            <div class="error-message" id="accountNameError"></div>
+                        </div>
+                        <div class="input-group" id="accountNumberGroup">
+                            <label for="accountNumber">Account Number *</label>
+                            <input type="text" id="accountNumber" name="accountNumber" required placeholder="9-16 digits">
+                            <div class="error-message" id="accountNumberError"></div>
+                        </div>
+                        <div class="input-group" id="ifscCodeGroup">
+                            <label for="ifscCode">IFSC Code *</label>
+                            <input type="text" id="ifscCode" name="ifscCode" required placeholder="e.g., SBIN0001234">
+                            <div class="error-message" id="ifscCodeError"></div>
+                        </div>
+                        <div class="input-group" id="bankNameGroup">
+                            <label for="bankName">Bank Name *</label>
+                            <input type="text" id="bankName" name="bankName" required>
+                            <div class="error-message" id="bankNameError"></div>
+                        </div>
+                        <div class="input-group" id="branchNameGroup">
+                            <label for="branchName">Branch Name *</label>
+                            <input type="text" id="branchName" name="branchName" required>
+                            <div class="error-message" id="branchNameError"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Submit Button -->
+                <button type="submit" class="submit-btn" id="submitBtn">
+                    <span class="spinner" id="spinner"></span>
+                    Submit Registration
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        /**
+         * Registration Form Validation System
+         * Provides comprehensive real-time validation for all form fields
+         */
+        class RegistrationFormValidator {
+            constructor() {
+                this.form = document.getElementById('registrationForm');
+                this.progressBar = document.getElementById('progressBar');
+                this.successMessage = document.getElementById('successMessage');
+                this.submitBtn = document.getElementById('submitBtn');
+                
+                // Validation patterns
+                this.patterns = {
+                    fullName: /^[A-Za-z\s]{2,}$/,
+                    email: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+                    phone: /^\d{10}$/,
+                    pinCode: /^\d{6}$/,
+                    accountNumber: /^\d{9,16}$/,
+                    ifscCode: /^[A-Z]{4}[0-9]{7}$/,
+                    graduationYear: /^\d{4}$/,
+                    textFields: /^.{2,}$/
+                };
+
+                // Required fields for validation
+                this.requiredFields = [
+                    'fullName', 'dob', 'email', 'phone', 'street', 'city', 
+                    'state', 'pinCode', 'country', 'qualification', 'course', 
+                    'university', 'location', 'graduationYear', 'accountName', 
+                    'accountNumber', 'ifscCode', 'bankName', 'branchName'
+                ];
+
+                // Track validation status
+                this.validationStatus = {};
+                this.initializeValidationStatus();
+                
+                this.init();
+            }
+
+            /**
+             * Initialize validation status for all required fields
+             */
+            initializeValidationStatus() {
+                this.requiredFields.forEach(field => {
+                    this.validationStatus[field] = false;
+                });
+            }
+
+            /**
+             * Initialize form validation and event listeners
+             */
+            init() {
+                // Add event listeners for real-time validation
+                this.requiredFields.forEach(fieldName => {
+                    const field = document.getElementById(fieldName);
+                    if (field) {
+                        // Validate on input (real-time)
+                        field.addEventListener('input', () => {
+                            this.validateField(fieldName);
+                            this.updateProgress();
+                        });
+
+                        // Validate on blur (when user leaves field)
+                        field.addEventListener('blur', () => {
+                            this.validateField(fieldName);
+                            this.updateProgress();
+                        });
+
+                        // Progressive validation - focus next field when current is valid
+                        field.addEventListener('keydown', (e) => {
+                            if (e.key === 'Tab' || e.key === 'Enter') {
+                                this.validateField(fieldName);
+                                if (!this.validationStatus[fieldName] && e.key === 'Enter') {
+                                    e.preventDefault();
+                                    this.showFieldError(fieldName);
+                                }
+                            }
+                        });
+                    }
+                });
+
+                // Form submission handler
+                this.form.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    this.handleFormSubmission();
+                });
+
+                // Initial progress update
+                this.updateProgress();
+            }
+
+            /**
+             * Validate individual field based on its type and requirements
+             * @param {string} fieldName - Name of the field to validate
+             * @returns {boolean} - Validation result
+             */
+            validateField(fieldName) {
+                const field = document.getElementById(fieldName);
+                const value = field.value.trim();
+                let isValid = false;
+                let errorMessage = '';
+
+                // Check if field is empty
+                if (!value) {
+                    errorMessage = 'This field is required.';
+                    this.showValidationState(fieldName, false, errorMessage);
+                    return false;
+                }
+
+                // Field-specific validations
+                switch (fieldName) {
+                    case 'fullName':
+                        isValid = this.patterns.fullName.test(value);
+                        errorMessage = isValid ? '' : 'Name must contain only letters and spaces (minimum 2 characters).';
+                        break;
+
+                    case 'email':
+                        isValid = this.patterns.email.test(value);
+                        errorMessage = isValid ? '' : 'Please enter a valid email address.';
+                        break;
+
+                    case 'phone':
+                        isValid = this.patterns.phone.test(value);
+                        errorMessage = isValid ? '' : 'Phone number must be exactly 10 digits.';
+                        break;
+
+                    case 'dob':
+                        isValid = this.validateDateOfBirth(value);
+                        errorMessage = isValid ? '' : 'You must be at least 18 years old.';
+                        break;
+
+                    case 'pinCode':
+                        isValid = this.patterns.pinCode.test(value);
+                        errorMessage = isValid ? '' : 'Pin code must be exactly 6 digits.';
+                        break;
+
+                    case 'accountNumber':
+                        isValid = this.patterns.accountNumber.test(value);
+                        errorMessage = isValid ? '' : 'Account number must be between 9-16 digits.';
+                        break;
+
+                    case 'ifscCode':
+                        isValid = this.patterns.ifscCode.test(value.toUpperCase());
+                        errorMessage = isValid ? '' : 'IFSC code must be in format: 4 letters followed by 7 numbers (e.g., SBIN0001234).';
+                        if (isValid) {
+                            field.value = value.toUpperCase(); // Auto-format to uppercase
+                        }
+                        break;
+
+                    case 'graduationYear':
+                        isValid = this.validateGraduationYear(value);
+                        errorMessage = isValid ? '' : 'Please enter a valid 4-digit year (not in the future).';
+                        break;
+
+                    case 'accountName':
+                        isValid = this.patterns.fullName.test(value);
+                        errorMessage = isValid ? '' : 'Account holder name must contain only letters and spaces (minimum 2 characters).';
+                        break;
+
+                    // Text fields with minimum length requirement
+                    case 'street':
+                    case 'city':
+                    case 'state':
+                    case 'course':
+                    case 'university':
+                    case 'location':
+                    case 'bankName':
+                    case 'branchName':
+                        isValid = this.patterns.textFields.test(value);
+                        errorMessage = isValid ? '' : 'This field must be at least 2 characters long.';
+                        break;
+
+                    // Select fields
+                    case 'country':
+                    case 'qualification':
+                        isValid = value !== '';
+                        errorMessage = isValid ? '' : 'Please select an option.';
+                        break;
+
+                    default:
+                        isValid = value.length > 0;
+                        errorMessage = isValid ? '' : 'This field is required.';
+                }
+
+                this.showValidationState(fieldName, isValid, errorMessage);
+                return isValid;
+            }
+
+            /**
+             * Validate date of birth (must be 18+ years old)
+             * @param {string} dobString - Date of birth string
+             * @returns {boolean} - Validation result
+             */
+            validateDateOfBirth(dobString) {
+                const dob = new Date(dobString);
+                const today = new Date();
+                const age = today.getFullYear() - dob.getFullYear();
+                const monthDiff = today.getMonth() - dob.getMonth();
+                
+                if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < dob.getDate())) {
+                    return age - 1 >= 18;
+                }
+                return age >= 18;
+            }
+
+            /**
+             * Validate graduation year (4-digit year, not in future)
+             * @param {string} year - Year string
+             * @returns {boolean} - Validation result
+             */
+            validateGraduationYear(year) {
+                if (!this.patterns.graduationYear.test(year)) return false;
+                
+                const currentYear = new Date().getFullYear();
+                const gradYear = parseInt(year);
+                
+                return gradYear >= 1950 && gradYear <= currentYear;
+            }
+
+            /**
+             * Display validation state for a field
+             * @param {string} fieldName - Name of the field
+             * @param {boolean} isValid - Validation result
+             * @param {string} errorMessage - Error message to display
+             */
+            showValidationState(fieldName, isValid, errorMessage) {
+                const fieldGroup = document.getElementById(fieldName + 'Group');
+                const errorElement = document.getElementById(fieldName + 'Error');
+
+                // Update validation status
+                this.validationStatus[fieldName] = isValid;
+
+                // Remove existing classes
+                fieldGroup.classList.remove('valid', 'invalid');
+
+                if (isValid) {
+                    fieldGroup.classList.add('valid');
+                    errorElement.classList.remove('show');
+                    errorElement.textContent = '';
+                } else {
+                    fieldGroup.classList.add('invalid');
+                    errorElement.textContent = errorMessage;
+                    errorElement.classList.add('show');
+                }
+            }
+
+            /**
+             * Show error for a specific field (used for progressive validation)
+             * @param {string} fieldName - Name of the field
+             */
+            showFieldError(fieldName) {
+                const field = document.getElementById(fieldName);
+                field.focus();
+                
+                // Add a small shake animation to draw attention
+                const fieldGroup = document.getElementById(fieldName + 'Group');
+                fieldGroup.style.animation = 'shake 0.5s';
+                setTimeout(() => {
+                    fieldGroup.style.animation = '';
+                }, 500);
+            }
+
+            /**
+             * Update progress bar based on validation status
+             */
+            updateProgress() {
+                const totalFields = this.requiredFields.length;
+                const validFields = Object.values(this.validationStatus).filter(status => status).length;
+                const progressPercentage = (validFields / totalFields) * 100;
+                
+                this.progressBar.style.width = progressPercentage + '%';
+            }
+
+            /**
+             * Handle form submission
+             */
+            handleFormSubmission() {
+                let isFormValid = true;
+                let firstInvalidField = null;
+
+                // Validate all fields
+                this.requiredFields.forEach(fieldName => {
+                    const fieldValid = this.validateField(fieldName);
+                    if (!fieldValid && !firstInvalidField) {
+                        firstInvalidField = fieldName;
+                    }
+                    isFormValid = isFormValid && fieldValid;
+                });
+
+                if (!isFormValid) {
+                    // Focus on first invalid field
+                    if (firstInvalidField) {
+                        document.getElementById(firstInvalidField).focus();
+                        this.showFieldError(firstInvalidField);
+                    }
+                    
+                    // Show error message
+                    this.showTemporaryMessage('Please correct the highlighted errors before submitting.', 'error');
+                    return;
+                }
+
+                // If form is valid, show success message
+                this.showSuccessMessage();
+            }
+
+            /**
+             * Show success message when form is valid
+             */
+            showSuccessMessage() {
+                // Show loading state
+                this.submitBtn.disabled = true;
+                document.getElementById('spinner').style.display = 'inline-block';
+                
+                // Simulate processing time
+                setTimeout(() => {
+                    this.submitBtn.disabled = false;
+                    document.getElementById('spinner').style.display = 'none';
+                    
+                    // Show success message
+                    this.successMessage.classList.add('show');
+                    
+                    // Trigger confetti animation
+                    this.createConfettiBlast();
+                    
+                    // Trigger confetti animation
+                    this.createConfettiBlast();
+                    
+                    // Scroll to success message
+                    this.successMessage.scrollIntoView({ 
+                        behavior: 'smooth', 
+                        block: 'center' 
+                    });
+
+                    // Hide form after successful submission
+                    setTimeout(() => {
+                        this.form.style.opacity = '0.5';
+                        this.form.style.pointerEvents = 'none';
+                    }, 1000);
+                }, 1500);
+            }
+
+            /**
+             * Show temporary message to user
+             * @param {string} message - Message to display
+             * @param {string} type - Message type (error, success, info)
+             */
+            showTemporaryMessage(message, type = 'info') {
+                // Create temporary message element
+                const messageElement = document.createElement('div');
+                messageElement.style.cssText = `
+                    position: fixed;
+                    top: 20px;
+                    right: 20px;
+                    background: ${type === 'error' ? '#e74c3c' : '#27ae60'};
+                    color: white;
+                    padding: 15px 20px;
+                    border-radius: 8px;
+                    z-index: 1000;
+                    animation: slideIn 0.3s ease;
+                    max-width: 300px;
+                    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+                `;
+                messageElement.textContent = message;
+
+                // Add to DOM
+                document.body.appendChild(messageElement);
+
+                // Remove after 4 seconds
+                setTimeout(() => {
+                    messageElement.style.animation = 'slideOut 0.3s ease';
+                    setTimeout(() => {
+                        if (messageElement.parentNode) {
+                            messageElement.parentNode.removeChild(messageElement);
+                        }
+                    }, 300);
+                }, 4000);
+            }
+
+            /**
+             * Create confetti blast animation for successful form submission
+             */
+            createConfettiBlast() {
+                const confettiContainer = document.createElement('div');
+                confettiContainer.className = 'confetti-container';
+                document.body.appendChild(confettiContainer);
+
+                // Confetti colors
+                const colors = [
+                    '#ff6b6b', '#4ecdc4', '#45b7d1', '#96ceb4', '#feca57',
+                    '#ff9ff3', '#54a0ff', '#5f27cd', '#00d2d3', '#ff9f43',
+                    '#10ac84', '#ee5a24', '#0abde3', '#3867d6', '#8854d0'
+                ];
+
+                // Create confetti pieces
+                for (let i = 0; i < 150; i++) {
+                    setTimeout(() => {
+                        const confetti = document.createElement('div');
+                        confetti.className = 'confetti-piece';
+                        
+                        // Random properties
+                        const color = colors[Math.floor(Math.random() * colors.length)];
+                        const left = Math.random() * 100;
+                        const animationDuration = Math.random() * 2 + 2; // 2-4 seconds
+                        const animationDelay = Math.random() * 0.5;
+                        const size = Math.random() * 8 + 6; // 6-14px
+                        const rotation = Math.random() * 360;
+                        
+                        // Apply styles
+                        confetti.style.cssText = `
+                            left: ${left}%;
+                            background-color: ${color};
+                            width: ${size}px;
+                            height: ${size}px;
+                            animation-duration: ${animationDuration}s;
+                            animation-delay: ${animationDelay}s;
+                            transform: rotate(${rotation}deg);
+                        `;
+                        
+                        // Add different shapes
+                        if (Math.random() > 0.5) {
+                            confetti.style.borderRadius = '50%'; // Circle
+                        } else if (Math.random() > 0.7) {
+                            confetti.style.borderRadius = '2px'; // Rounded square
+                        }
+                        
+                        confettiContainer.appendChild(confetti);
+                        
+                        // Remove confetti piece after animation
+                        setTimeout(() => {
+                            if (confetti.parentNode) {
+                                confetti.parentNode.removeChild(confetti);
+                            }
+                        }, (animationDuration + animationDelay) * 1000);
+                    }, i * 20); // Stagger creation
+                }
+
+                // Remove container after all animations complete
+                setTimeout(() => {
+                    if (confettiContainer.parentNode) {
+                        confettiContainer.parentNode.removeChild(confettiContainer);
+                    }
+                }, 5000);
+            }
+
+            /**
+             * Create confetti blast animation for successful form submission
+             */
+            createConfettiBlast() {
+                const confettiContainer = document.createElement('div');
+                confettiContainer.className = 'confetti-container';
+                document.body.appendChild(confettiContainer);
+
+                // Confetti colors
+                const colors = [
+                    '#ff6b6b', '#4ecdc4', '#45b7d1', '#96ceb4', '#feca57',
+                    '#ff9ff3', '#54a0ff', '#5f27cd', '#00d2d3', '#ff9f43',
+                    '#10ac84', '#ee5a24', '#0abde3', '#3867d6', '#8854d0'
+                ];
+
+                // Create confetti pieces
+                for (let i = 0; i < 150; i++) {
+                    setTimeout(() => {
+                        const confetti = document.createElement('div');
+                        confetti.className = 'confetti-piece';
+                        
+                        // Random properties
+                        const color = colors[Math.floor(Math.random() * colors.length)];
+                        const left = Math.random() * 100;
+                        const animationDuration = Math.random() * 2 + 2; // 2-4 seconds
+                        const animationDelay = Math.random() * 0.5;
+                        const size = Math.random() * 8 + 6; // 6-14px
+                        const rotation = Math.random() * 360;
+                        
+                        // Apply styles
+                        confetti.style.cssText = `
+                            left: ${left}%;
+                            background-color: ${color};
+                            width: ${size}px;
+                            height: ${size}px;
+                            animation-duration: ${animationDuration}s;
+                            animation-delay: ${animationDelay}s;
+                            transform: rotate(${rotation}deg);
+                        `;
+                        
+                        // Add different shapes
+                        if (Math.random() > 0.5) {
+                            confetti.style.borderRadius = '50%'; // Circle
+                        } else if (Math.random() > 0.7) {
+                            confetti.style.borderRadius = '2px'; // Rounded square
+                        }
+                        
+                        confettiContainer.appendChild(confetti);
+                        
+                        // Remove confetti piece after animation
+                        setTimeout(() => {
+                            if (confetti.parentNode) {
+                                confetti.parentNode.removeChild(confetti);
+                            }
+                        }, (animationDuration + animationDelay) * 1000);
+                    }, i * 20); // Stagger creation
+                }
+
+                // Remove container after all animations complete
+                setTimeout(() => {
+                    if (confettiContainer.parentNode) {
+                        confettiContainer.parentNode.removeChild(confettiContainer);
+                    }
+                }, 5000);
+            }
+        }
+
+        // Add CSS animations for temporary messages
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes slideIn {
+                from {
+                    transform: translateX(100%);
+                    opacity: 0;
+                }
+                to {
+                    transform: translateX(0);
+                    opacity: 1;
+                }
+            }
+            
+            @keyframes slideOut {
+                from {
+                    transform: translateX(0);
+                    opacity: 1;
+                }
+                to {
+                    transform: translateX(100%);
+                    opacity: 0;
+                }
+            }
+
+            @keyframes shake {
+                0%, 100% { transform: translateX(0); }
+                10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+                20%, 40%, 60%, 80% { transform: translateX(5px); }
+            }
+
+            /* Confetti Animation Styles */
+            .confetti-container {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                pointer-events: none;
+                z-index: 9999;
+                overflow: hidden;
+            }
+
+            .confetti-piece {
+                position: absolute;
+                width: 10px;
+                height: 10px;
+                background: #ff6b6b;
+                animation: confetti-fall 3s linear forwards;
+            }
+
+            @keyframes confetti-fall {
+                0% {
+                    transform: translateY(-100vh) rotate(0deg);
+                    opacity: 1;
+                }
+                100% {
+                    transform: translateY(100vh) rotate(720deg);
+                    opacity: 0;
+                }
+            }
+
+            .confetti-piece:nth-child(odd) {
+                animation-duration: 2.5s;
+                animation-delay: 0.2s;
+            }
+
+            .confetti-piece:nth-child(even) {
+                animation-duration: 3.5s;
+                animation-delay: 0.1s;
+            }
+
+            /* Confetti Animation Styles */
+            .confetti-container {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                pointer-events: none;
+                z-index: 9999;
+                overflow: hidden;
+            }
+
+            .confetti-piece {
+                position: absolute;
+                width: 10px;
+                height: 10px;
+                background: #ff6b6b;
+                animation: confetti-fall 3s linear forwards;
+            }
+
+            @keyframes confetti-fall {
+                0% {
+                    transform: translateY(-100vh) rotate(0deg);
+                    opacity: 1;
+                }
+                100% {
+                    transform: translateY(100vh) rotate(720deg);
+                    opacity: 0;
+                }
+            }
+
+            .confetti-piece:nth-child(odd) {
+                animation-duration: 2.5s;
+                animation-delay: 0.2s;
+            }
+
+            .confetti-piece:nth-child(even) {
+                animation-duration: 3.5s;
+                animation-delay: 0.1s;
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Initialize the form validator when DOM is loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            new RegistrationFormValidator();
+        });
+
+        // Add some additional utility functions for enhanced user experience
+        
+        /**
+         * Auto-format phone number as user types
+         */
+        document.addEventListener('DOMContentLoaded', () => {
+            const phoneField = document.getElementById('phone');
+            phoneField.addEventListener('input', (e) => {
+                // Remove non-numeric characters
+                let value = e.target.value.replace(/\D/g, '');
+                
+                // Limit to 10 digits
+                if (value.length > 10) {
+                    value = value.substr(0, 10);
+                }
+                
+                e.target.value = value;
+            });
+
+            // Auto-format account number (remove spaces and special characters)
+            const accountNumberField = document.getElementById('accountNumber');
+            accountNumberField.addEventListener('input', (e) => {
+                let value = e.target.value.replace(/\D/g, '');
+                if (value.length > 16) {
+                    value = value.substr(0, 16);
+                }
+                e.target.value = value;
+            });
+
+            // Auto-format pin code
+            const pinCodeField = document.getElementById('pinCode');
+            pinCodeField.addEventListener('input', (e) => {
+                let value = e.target.value.replace(/\D/g, '');
+                if (value.length > 6) {
+                    value = value.substr(0, 6);
+                }
+                e.target.value = value;
+            });
+
+            // Auto-format IFSC code
+            const ifscField = document.getElementById('ifscCode');
+            ifscField.addEventListener('input', (e) => {
+                let value = e.target.value.toUpperCase().replace(/[^A-Z0-9]/g, '');
+                if (value.length > 11) {
+                    value = value.substr(0, 11);
+                }
+                e.target.value = value;
+            });
+        });
+    </script>
+</body>
+</html>

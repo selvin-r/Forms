@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Create Account</title>
+  <style>
+    body {
+      min-height: 100vh;
+      margin: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: url('https://images.unsplash.com/photo-1465101046530-73398c7f28ca?fit=crop&w=1050&q=80') center/cover no-repeat;
+      position: relative;
+      font-family: 'Poppins', Arial, sans-serif;
+      overflow: hidden;
+    }
+    /* Background circles for effect */
+    .circle {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(30px);
+      opacity: 0.7;
+      z-index: 0;
+    }
+    .circle.blue {
+      width: 250px;
+      height: 250px;
+      background: #36c1f7;
+      top: 0; left: 60px;
+    }
+    .circle.orange {
+      width: 200px;
+      height: 200px;
+      background: #ff8a22;
+      bottom: 40px; right: 80px;
+    }
+    .container {
+      position: relative;
+      z-index: 2;
+      max-width: 370px;
+      width: 100%;
+      padding: 36px 30px 28px 30px;
+      background: rgba(60,60,60,0.25);
+      border-radius: 15px;
+      box-shadow: 0 8px 40px rgba(30,30,30,0.20);
+      backdrop-filter: blur(7px);
+      margin: 20px;
+      box-sizing: border-box;
+    }
+    .container h2 {
+      color: #fff;
+      text-align: center;
+      font-size: 2em;
+      font-weight: 600;
+      letter-spacing: 2px;
+      margin-bottom: 28px;
+    }
+    label {
+      color: #fff;
+      font-weight: 500;
+      display: block;
+      margin-bottom: 7px;
+      font-size: 1em;
+    }
+    .input-group {
+      margin-bottom: 18px;
+      text-align: left;
+    }
+    input[type="text"], input[type="password"] {
+      width: 100%;
+      padding: 12px 15px;
+      border-radius: 5px;
+      border: none;
+      outline: none;
+      background: #f3f3f3;
+      font-size: 1em;
+      margin-top: 3px;
+      letter-spacing: 0.5px;
+      transition: border 0.2s;
+      margin-bottom: 2px;
+    }
+    input[type="text"]:focus, input[type="password"]:focus {
+      border: 1.5px solid #36c1f7;
+    }
+    .main-btn {
+      width: 100%;
+      padding: 13px 0;
+      margin: 16px 0 10px 0;
+      font-size: 1.15em;
+      border: none;
+      border-radius: 6px;
+      color: #333;
+      font-weight: 700;
+      background: #fff;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s;
+      letter-spacing: 1.5px;
+      box-shadow: 0 2px 6px rgba(40,40,40,0.09);
+    }
+    .main-btn:hover {
+      background: #f3f3f3;
+      color: #111;
+    }
+    .social-row {
+      display: flex;
+      gap: 12px;
+      margin: 12px 0 6px 0;
+    }
+    .social-btn {
+      flex: 1;
+      padding: 10px 0;
+      border: none;
+      border-radius: 4px;
+      font-size: 1em;
+      color: #fff;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      background: #545454;
+      opacity: 0.89;
+      transition: background 0.18s;
+      text-decoration: none;
+    }
+    .social-btn.google {background: #ddd; color: #555;}
+    .social-btn.google::before {
+      content:'';
+      display:inline-block;
+      background:url('https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg') no-repeat center center/contain;
+      width:19px;height:19px;
+      margin-right:7px;
+    }
+    .social-btn.facebook {background: #e0e4ea; color: #3b5998;}
+    .social-btn.facebook::before {
+      content:'';
+      display:inline-block;
+      background:url('https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg') no-repeat center center/contain;
+      width:18px;height:18px;
+      margin-right:7px;
+    }
+    .account-link {
+      margin: 14px 0 0 0;
+      text-align: center;
+      color: #fff;
+      font-size: 1em;
+      letter-spacing: 0.2px;
+    }
+    .account-link a {
+      color: #ff744f;
+      text-decoration: none;
+      font-weight: 700;
+    }
+    .account-link a:hover {
+      text-decoration: underline;
+    }
+  </style>
+
+
+</head>
+<body>
+  <div class="circle blue"></div>
+  <div class="circle orange"></div>
+  <div class="container">
+    <h2>Create Account</h2>
+    <form>
+      <div class="input-group">
+        <label for="username">Username</label>
+        <input id="email" type="email" placeholder="Email or Phone" required>
+      </div>
+      <div class="input-group">
+        <label for="password">Password</label>
+        <input id="password" type="password" placeholder="Password" required>
+      </div>
+      <button type="submit" class="main-btn" id="submit">Create Account</button>
+      <div class="social-row">
+        <a href="#" class="social-btn google">Google</a>
+        <a href="#" class="social-btn facebook">Facebook</a>
+      </div>
+      <div class="account-link">
+        Have an account? <a href="#">Login Here</a>
+      </div>
+    </form>
+  </div>
+   <script type="module" src="./Auth.js" defer></script>
+</body>
+</html>

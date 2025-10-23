@@ -51,9 +51,17 @@
 
 
 
-// Navigater=================================================================================================================
+const person = {
+    name: "selvin",
+    place: "chennai", // property 
 
+    greetUser(){
+        return `Hello my name is ${this.name} and coming from ${this.place}`;
+    },
 
+};
 
+const personone = person.greetUser();
 
+console.log(personone);
   

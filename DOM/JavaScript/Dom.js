@@ -61,6 +61,9 @@ const person = {
 
 };
 
+person.name = "Ravi";
+person.place = "Bangalore";
+
 const personone = person.greetUser();
 
 console.log(personone);

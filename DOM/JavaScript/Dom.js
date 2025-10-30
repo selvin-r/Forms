@@ -61,10 +61,67 @@ const person = {
 
 };
 
-person.name = "Ravi";
-person.place = "Bangalore";
+// person.name = "selvin";
+// person.place = "Bangalore";
 
-const personone = person.greetUser();
+// const personone = person.greetUser();
 
-console.log(personone);
-  
+// console.log(personone);
+
+// // print the document 
+
+// // document.writeln(personone);
+
+
+// document.body.innerHTML = `<h1>${personone}</h1>`;
+
+
+// const userinput = prompt("Enter your name : ");
+// const userplace = prompt("Enter your place : ");
+
+// person.name = userinput;
+// person.place = userplace;
+
+// document.body.innerHTML =  person.greetUser();
+
+document.body.style.backgroundColor="lightblue";
+
+  document.body.innerHTML += "<h2>Welcome, Darling!</h2>";
+
+
+  const newoara = document.createElement("p");
+
+  newoara.textContent ="this is a new paragraph created using js"
+
+  document.body.appendChild(newoara);
+
+
+    document.body.style.color = "purple";
+
+    //  document.body.innerHTML = "";
+
+
+//     document.body.onclick = function() {
+//     alert("You clicked on the body!");
+//   }
+
+
+//   document.body.className = "dark"; 
+
+
+// Object.assign(document.body.style, {
+//     backgroundColor: "green",
+//     color: "white",
+//     fontFamily: "Arial",
+//     textAlign: "center"
+//   });
+
+
+  document.body.addEventListener("mousemove", (e) => {
+    document.body.style.backgroundColor = `rgb(${e.clientX % 255}, ${e.clientY % 255}, 150)`;
+  });
+
+//   const allElements = document.body.children;
+//   console.log(allElements);
+
+  console.log(document.body.getElementsByTagName("*").length);

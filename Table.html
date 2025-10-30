@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Table</title>
+
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <style>
+
+        body{
+            font-family: "poppins" , sans-serif;
+            background: #f9f9fb;
+        }
+        .table-container{
+
+            width: 90%;
+            margin: 40px auto;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+          
+
+        }
+
+        thead{
+            background: #f06292;
+            color: white;
+            position: static;
+        }
+        th,td {
+            border: 1px solid #ddd;
+            padding: 12px 15px;
+            text-align: left;
+        }
+       th {
+        background: #f06292;
+        color: white;
+        position: sticky;
+        top: 0;
+       }
+
+       /* tr:nth-child(even) {
+        background: #f8f8f8;
+       } */
+
+        tr:hover {
+      background: #fff0f5;
+    }
+    thead{
+        z-index: 2;
+    }
+
+     caption {
+      caption-side: top;
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 10px;
+      color: #333;
+    }
+    .name-span{
+        float: right;
+        cursor: pointer;
+    }
+    </style>
+</head>
+<body>
+   <div class="table-container">
+    <table id="employeeTable">
+        <caption>Employee Details</caption>
+
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name <span id="nameSort" class="name-span"><i id="sortIcon" class='bx bx-sort-a-z'></i></span></th>
+                <th>Role</th>
+                <th>Department</th>
+                <th>Email</th>
+                <th>Salary</th>
+                <th>Join Date</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr><td colspan="7" style="text-align: center;">Loading date</td></tr>
+        </tbody>
+    </table>
+
+    </div>
+
+    <script>
+
+            
+            let employees = [];
+
+       fetch('employees.json')
+
+      .then(response => response.json())
+      .then(data => {
+        employees = data.employees;
+        displayTable(employees);
+      })
+      .catch(err => console.error("Error loading data 400:", err));
+
+
+
+
+
+
+     function displayTable(data){
+
+            const tbody = document.querySelector('#employeeTable tbody');
+
+            tbody.innerHTML=" ";
+
+
+            data.forEach(emp => {
+
+                const row = document.createElement('tr');
+
+                row.innerHTML = `
+                    <td>${emp.id}</td>
+                    <td>${emp.name}</td>
+                    <td>${emp.role}</td>
+                    <td>${emp.department}</td>
+                    <td>${emp.email}</td>
+                    <td>${emp.salary}</td>
+                    <td>${emp.joinDate}</td>
+                `;
+                tbody.appendChild(row);
+            });
+        }
+
+    function sortByNameAsc() {
+      const sorted = [...employees].sort((a, b) => a.name.localeCompare(b.name));
+      displayTable(sorted);
+    }
+
+   
+    document.querySelector('#nameSort').addEventListener("click", sortByNameAsc);
+ 
+
+    </script>
+</body>
+</html>
